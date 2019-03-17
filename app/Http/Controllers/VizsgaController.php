@@ -18,8 +18,7 @@ class VizsgaController extends Controller
     {
         $validator = Validator::make(
             ['vizsgakod' => $vizsgakod],
-            ['vizsgakod' => 'required|exists:vizsgas'],
-            Config::get('constants.VALIDATION_ERROR_STRINGS')
+            ['vizsgakod' => 'required|exists:vizsgas']
         );
 
         if ($validator->fails())
@@ -36,8 +35,7 @@ class VizsgaController extends Controller
     {
         $validator = Validator::make(
             $request->all(),
-            [ 'vizsgakod' => 'exists:vizsgas|required', 'name' => 'required', 'neptun' => 'required' ],
-            Config::get('constants.VALIDATION_ERROR_STRINGS')
+            [ 'vizsgakod' => 'exists:vizsgas|required', 'name' => 'required', 'neptun' => 'required' ]
         );
 
         if ($validator->fails())
@@ -72,8 +70,7 @@ class VizsgaController extends Controller
     {
         $validator = Validator::make(
             ['vizsgazasId' => $vizsgazasId, 'kerdesszam' => $kerdesszam],
-            ['vizsgazasId' => 'required|integer', 'kerdesszam' => 'required|integer|min:1'],
-            Config::get('constants.VALIDATION_ERROR_STRINGS')
+            ['vizsgazasId' => 'required|integer', 'kerdesszam' => 'required|integer|min:1']
         );
         if ($validator->fails())
             return redirect()->route('error')->withErrors($validator);
@@ -127,8 +124,7 @@ class VizsgaController extends Controller
                 'kerdes_id' => 'exists:kerdes,id|required|integer',
                 'vizsgazas_id' => 'exists:vizsgazas,id|required|integer',
                 'valasz_lehetoseg_id' => 'exists:valasz_lehetosegs,id|required|integer'
-            ],
-            Config::get('constants.VALIDATION_ERROR_STRINGS')
+            ]
         );
 
         if ($validator->fails())
@@ -186,8 +182,7 @@ class VizsgaController extends Controller
     {
         $validator = Validator::make(
             ['vizsgazasId' => $vizsgazasId],
-            ['vizsgazasId' => 'required|exists:vizsgazas,id'],
-            Config::get('constants.VALIDATION_ERROR_STRINGS')
+            ['vizsgazasId' => 'required|exists:vizsgazas,id']
         );
 
         $vizsgazas = Vizsgazas::find($vizsgazasId);
@@ -196,19 +191,7 @@ class VizsgaController extends Controller
         if ($vizsgazas->vizsga_secret !== $vizsgaSecret)
             return redirect()->route('error');
 
-        $vm = new \stdClass();
-        $vm->name = $vizsgazas->name;
-        $vm->neptun = $vizsgazas->neptun;
-        $vm->kerdesekSzama = $vizsgazas->vizsga->kerdes->count();
-        $vm->megvalaszoltKerdesekSzama = $vizsgazas->valaszs->count();
-        $vm->elertPontokSzama = $vizsgazas->getElertPontszam();
-        $vm->szazalek = $vizsgazas->getSzazalek();
-        $vm->jegy = $vizsgazas->getJegy();
-        $vm->valaszok = $vizsgazas->valaszs;
-        $vm->targyNeve = $vizsgazas->vizsga->targy_nev;
-        $vm->vizsgaztatoNeve = $vizsgazas->vizsga->user->name;
-
-        return view('vizsga-osszegzes', ['vm' => $vm]);
+        return view('vizsga-osszegzes', ['vizsgazas' => $vizsgazas]);
     }
 
     private function getUniqueVizsgaSecret()

@@ -36,4 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', 'DashboardController@show')->name('dashboard');
 
     Route::get('vizsga-reszletek/{vizsgaId}', 'DashboardController@vizsgaReszletek')->name('vizsgaReszletek');
+
+    Route::get('vizsga-kitoltes-reszletek/{vizsgazasId}', 'DashboardController@vizsgaKitoltesReszletek')->name('vizsgaKitoltesReszletek');
+
+    Route::get('new-vizsga', 'DashboardController@newVizsgaForm')->name('newVizsgaForm');
+
+    Route::post('create-vizsga', 'DashboardController@createVizsga')->name('createVizsga');
 });

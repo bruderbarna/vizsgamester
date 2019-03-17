@@ -4,6 +4,7 @@
 
 @section('content')
     <h3>Vizsgák</h3>
+    <a href="{{ route('newVizsgaForm') }}">Új vizsga létrehozása</a>
     @if ($vizsgak->isEmpty())
         Jelenleg nincsenek felvitt vizsgái.
     @else

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Vizsga extends Model
 {
 
+    protected $fillable = ['targy_nev', 'vizsga_idotartam', 'tol', 'ig'];
+
     public function user()
     {
         return $this->belongsTo('App\User');

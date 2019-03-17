@@ -7,6 +7,7 @@
 
         <title>Vizsgamester - @yield('title')</title>
         <link rel="stylesheet" type="text/css" href="/css/app.css" />
+        <script src="/js/app.js"></script>
     </head>
     <body>
         @if (Auth::check())
@@ -36,6 +37,5 @@
             @endif
             @yield('content')
         </div>
-        <script src="/js/app.js"></script>
     </body>
 </html>

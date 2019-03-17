@@ -3,18 +3,21 @@
 @section('title', 'Vizsga összegzés')
 
 @section('content')
-    Tárgy neve: {{ $vm->targyNeve }}<br />
-    Vizsgáztató neve: {{ $vm->vizsgaztatoNeve }}<br />
-    Név: {{ $vm->name }}<br />
-    Neptun kód: {{ $vm->neptun }}<br />
-    Kérdések száma: {{ $vm->kerdesekSzama }}<br />
-    Megválaszolt kérdések száma: {{ $vm->megvalaszoltKerdesekSzama }}<br />
-    Elért pontszám: {{ $vm->elertPontokSzama }}<br />
-    Százalékos érték: {{ number_format($vm->szazalek, 2) }}<br />
-    Jegy: {{ $vm->jegy }}<br />
+    @if (isset($vizsgaztato) && $vizsgaztato === true)
+        <a href="{{ url()->previous() }}">Vissza</a>
+    @endif
+    Tárgy neve: {{ $vizsgazas->vizsga->targy_nev }}<br />
+    Vizsgáztató neve: {{ $vizsgazas->vizsga->user->name }}<br />
+    Név: {{ $vizsgazas->name }}<br />
+    Neptun kód: {{ $vizsgazas->neptun }}<br />
+    Kérdések száma: {{ $vizsgazas->vizsga->kerdes->count() }}<br />
+    Megválaszolt kérdések száma: {{ $vizsgazas->valaszs->count() }}<br />
+    Elért pontszám: {{ $vizsgazas->getElertPontszam() }}<br />
+    Százalékos érték: {{ number_format($vizsgazas->getSzazalek(), 2) }}<br />
+    Jegy: {{ $vizsgazas->getJegy() }}<br />
 
     <hr>
-    @foreach ($vm->valaszok as $valasz)
+    @foreach ($vizsgazas->valaszs as $valasz)
         {{ $valasz->kerdes->kerdesszam }}. kérdés<br />
         {{ $valasz->kerdes->description }}
         <ul>

@@ -3,6 +3,7 @@
 @section('title', 'Vizsga részletek')
 
 @section('content')
+    <a href="{{ route('dashboard') }}">Vissza</a>
     <ul>
         <li>Tárgy neve: {{ $vizsga->targy_nev }}</li>
         <li>Vizsgáztató neve: {{ $vizsga->user->name }}</li>
@@ -33,7 +34,7 @@
                         <td>{{ $vizsgazas->neptun }}</td>
                         <td>{{ $vizsgazas->getElertPontszam() }}/{{ $vizsgazas->vizsga->kerdes->count() }}</td>
                         <td>{{ $vizsgazas->getSzazalek() }}</td>
-                        <td>{{ $vizsgazas->getJegy() </td>
+                        <td>{{ $vizsgazas->getJegy() }}</td>
                         <td><a href="{{ route('vizsgaKitoltesReszletek', ['vizsgazasId' => $vizsgazas->id]) }}">Részletek</a></td>
                     </tr>
                 @endforeach

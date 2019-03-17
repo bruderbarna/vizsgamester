@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'hu',
 
     /*
     |--------------------------------------------------------------------------
@@ -129,7 +129,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | The service providers listed here will be automatically loaded on the
-    | request to your application. Feel free to add your own services to
+    |app.layouo request to your application. Feel free to add your own services to
     | this array to grant expanded functionality to your applications.
     |
     */
@@ -174,6 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -223,6 +225,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
