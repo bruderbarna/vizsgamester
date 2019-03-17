@@ -23,7 +23,10 @@
                         <td>{{ $vizsga->targy_nev }}</td>
                         <td>{{ $vizsga->tol }} - {{ $vizsga->ig }}</td>
                         <td>{{ $vizsga->vizsgazass->count() }}</td>
-                        <td><a href="{{ route('vizsgaReszletek', ['vizsgaId' => $vizsga->id]) }}">Részletek</a></td>
+                        <td>
+                            <a href="{{ route('vizsgaReszletek', ['vizsgaId' => $vizsga->id]) }}">Részletek</a>
+                            <a href="{{ route('vizsgaModositasForm', ['vizsgaId' => $vizsga->id]) }}">Módosítás</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

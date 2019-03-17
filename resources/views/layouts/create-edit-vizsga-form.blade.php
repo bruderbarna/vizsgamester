@@ -38,13 +38,18 @@
 
 <script>
     $(document).ready(function () {
-        function initDatetimepicker(id) {
-            $(id).datetimepicker({
-                format: 'YYYY-MM-DD HH:mm'
-            });
+        function initDatetimepicker(id, value) {
+            var params = {
+                format: 'YYYY-MM-DD HH:mm',
+            };
+
+            if (value)
+                params.date = value;
+
+            $(id).datetimepicker(params);
         }
 
-        initDatetimepicker('#tol');
-        initDatetimepicker('#ig');
+        initDatetimepicker('#tol'{!! isset($tol) ? (", '" . $tol . "'") : ''!!});
+        initDatetimepicker('#ig'{!! isset($ig) ? (", '" . $ig . "'") : ''!!});
     });
 </script>

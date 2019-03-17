@@ -14,7 +14,7 @@
     </ul>
     <h3>Vizsga kitöltések</h3>
     @if ($vizsga->vizsgazass->isEmpty())
-        Jelenleg nincsenek kitöltések.
+        <h4>Jelenleg nincsenek kitöltések.</h4>
     @else
         <table class="table">
             <thead>
@@ -24,16 +24,16 @@
                     <th scope="col">Helyes válaszok</th>
                     <th scope="col">Százalék</th>
                     <th scope="col">Jegy</th>
-                    <th scope="col">Műveletek</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($vizsga->vizsgazass as $vizsgazas)
+                @foreach ($vizsga->vizsgazass->where('vegzett', 1) as $vizsgazas)
                     <tr>
                         <td>{{ $vizsgazas->name }}</td>
                         <td>{{ $vizsgazas->neptun }}</td>
                         <td>{{ $vizsgazas->getElertPontszam() }}/{{ $vizsgazas->vizsga->kerdes->count() }}</td>
-                        <td>{{ $vizsgazas->getSzazalek() }}</td>
+                        <td>{{ number_format($vizsgazas->getSzazalek(), 2) }}</td>
                         <td>{{ $vizsgazas->getJegy() }}</td>
                         <td><a href="{{ route('vizsgaKitoltesReszletek', ['vizsgazasId' => $vizsgazas->id]) }}">Részletek</a></td>
                     </tr>

@@ -10,7 +10,9 @@
         <li>Kérdések száma: {{ $vizsga->kerdes->count() }}</li>
         <li>Vizsga időintervallum: {{ $vizsga->tol }} - {{ $vizsga->ig }}</li>
     </ul>
-    @if ($vizsga->canTakeNow())
+    @if (!$vizsga->hasQuestions())
+        A vizsgát nem lehet kitölteni, mert a vizsgáztató nem töltött fel hozzá kérdéseket.
+    @elseif ($vizsga->canTakeNow())
         <form action="/startvizsga" method="POST">
             @csrf
             <input name="vizsgakod" type="hidden" value="{{ $vizsga->vizsgakod }}">

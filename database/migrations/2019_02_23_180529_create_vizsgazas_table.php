@@ -18,6 +18,7 @@ class CreateVizsgazasTable extends Migration
             $table->integer('vizsga_id')->unsigned();
             $table->foreign('vizsga_id')->references('id')->on('vizsgas');
             $table->integer('current_kerdes');
+            $table->boolean('vegzett')->default(0);
             $table->string('vizsga_secret')->unique();
             $table->string('name');
             $table->string('neptun');

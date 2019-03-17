@@ -42,4 +42,9 @@ class Vizsga extends Model
         return $now >= $tol && $now <= $ig;
     }
 
+    public function hasQuestions()
+    {
+        return $this->kerdes->count() > 0;
+    }
+
 }

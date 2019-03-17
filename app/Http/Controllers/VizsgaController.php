@@ -191,6 +191,10 @@ class VizsgaController extends Controller
         if ($vizsgazas->vizsga_secret !== $vizsgaSecret)
             return redirect()->route('error');
 
+        $vizsgazas->vegzett = 1;
+        if (!$vizsgazas->save())
+            return redirect()->route('error');
+
         return view('vizsga-osszegzes', ['vizsgazas' => $vizsgazas]);
     }
 

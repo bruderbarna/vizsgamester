@@ -29,9 +29,9 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 Route::post('login', 'Auth\LoginController@login')->name('loginPost');
 
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
 Route::middleware('auth')->group(function () {
+
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::get('dashboard', 'DashboardController@show')->name('dashboard');
 
@@ -42,4 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('new-vizsga', 'DashboardController@newVizsgaForm')->name('newVizsgaForm');
 
     Route::post('create-vizsga', 'DashboardController@createVizsga')->name('createVizsga');
+
+    Route::get('vizsga-modositas/{vizsgaId}', 'DashboardController@vizsgaModositasForm')->name('vizsgaModositasForm');
+
+    Route::post('vizsga-modositas', 'DashboardController@vizsgaModositas')->name('vizsgaModositas');
+
 });
